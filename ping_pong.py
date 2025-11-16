@@ -42,10 +42,30 @@ game = True
 finish = False
 fps = 60
 
+rocket1 = Player('rocket_pung-pong1.png', 30, 200, 50, 150, 4)
+rocket2 = Player('rocket_pung-pong2.png', 520, 200, 50, 150, 4)
+ball = GameSprite('ball_tennis.png', 200, 200, 50, 50, 4)
+
+speed_x = 3
+speed_y = 3
+
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+    
+    if not finish:
+        window.fill(background)
+        rocket1.update_l()
+        rocket2.update_r()
+
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+
+        rocket1.reset()
+        rocket2.reset()
+        ball.reset()
+
 
     display.update()
     clock.tick(fps)
